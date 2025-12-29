@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>靈魂指南針｜您的能量守護者</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;500;700&display=swap');
+        :root { --金棕色: #b08d57; --鼠尾草綠: #8fa18f; --溫潤背景: #f9f7f2; --純白: #ffffff; }
+        body { background: var(--溫潤背景); font-family: 'Noto Serif TC', serif; display: flex; justify-content: center; padding: 20px; color: #444; }
+        .容器 { max-width: 750px; width: 100%; background: var(--純白); padding: 50px; border-radius: 20px; box-shadow: 0 15px 50px rgba(0,0,0,0.03); text-align: center; }
+        
+        .核心承諾 { font-size: 13px; color: var(--鼠尾草綠); letter-spacing: 2px; margin-bottom: 40px; line-height: 1.8; }
+        h1 { color: var(--金棕色); font-weight: 500; letter-spacing: 5px; margin-bottom: 30px; }
+
+        .輸入區 { margin-bottom: 30px; }
+        input { padding: 12px; border: none; border-bottom: 2px solid #e0e0e0; font-size: 20px; width: 220px; text-align: center; outline: none; background: transparent; transition: 0.3s; }
+        input:focus { border-bottom-color: var(--金棕色); }
+        button { padding: 12px 50px; background: var(--金棕色); color: white; border: none; cursor: pointer; font-size: 16px; margin-top: 25px; border-radius: 2px; transition: 0.3s; }
+        button:hover { opacity: 0.8; letter-spacing: 3px; }
+
+        /* 三層金字塔佈局 (只顯示 1-2-4 結構) */
+        .能量金字塔 { margin: 60px auto; display: none; flex-direction: column; align-items: center; }
+        .層級 { display: flex; justify-content: center; margin-bottom: 30px; }
+        .能量球 { width: 55px; height: 55px; line-height: 55px; border: 1px solid var(--金棕色); border-radius: 50%; margin: 0 15px; font-weight: bold; color: var(--金棕色); font-size: 22px; background: white; }
+        .能量球.巔峰 { background: var(--金棕色); color: white; transform: scale(1.3); box-shadow: 0 10px 25px rgba(176,141,87,0.3); }
+
+        /* 療癒訊息區 */
+        .療癒顯示區 { text-align: left; margin-top: 50px; display: none; animation: 漸入顯示 1.5s; }
+        .訊息卡片 { padding: 30px; border-left: 1px solid var(--金棕色); background: #fffcf9; margin-bottom: 30px; }
+        .水晶建議框 { display: flex; align-items: flex-start; gap: 20px; margin-top: 20px; padding: 20px; border: 1px dashed var(--金棕色); }
+        .品牌堅持 { font-size: 14px; color: #888; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; line-height: 1.6; }
+        
+        @keyframes 漸入顯示 { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<div class="容器">
+    <div class="核心承諾">「這不是一次消費，而是一次與靈魂的深處對話。<br>我們致力於幫助每一位有緣人找到內在的平靜與力量。」</div>
+    <h1>能量全息指引</h1>
+
+    <div class="輸入區">
+        <input type="text" id="生日輸入" placeholder="請輸入西元生日(8碼)" maxlength="8">
+        <br>
+        <button onclick="開啟導引()">啟動生命導引</button>
+    </div>
+
+    <div class="能量金字塔" id="能量圖界面">
+        <div class="層級"><div class="能量球 巔峰" id="巔峰數"></div></div>
+        <div class="層級"><div class="能量球" id="三層-左"></div><div class="能量球" id="三層-右"></div></div>
+        <div class="層級">
+            <div class="能量球" id="二層-1"></div><div class="能量球" id="二層-2"></div>
+            <div class="能量球" id="二層-3"></div><div class="能量球" id="二層-4"></div>
+        </div>
+        </div>
+
+    <div class="療癒顯示區" id="結果結果區">
+        <div class="訊息卡片">
+            <h3 style="color:var(--金棕色); margin-top:0;">✨ 給您的能量絮語</h3>
+            <div id="療癒建議文" style="font-size: 18px; line-height: 1.8;"></div>
+        </div>
+
+        <div class="水晶建議框">
+            <div style="font-size: 30px;">🌿</div>
+            <div>
+                <strong style="color:var(--金棕色);">真心建議的能量媒介：</strong><br>
+                <span id="水晶名稱" style="font-size: 18px; font-weight: bold;"></span>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">這款礦石的振動頻率與您目前的需求最為契合，能溫柔地協助您調頻。</p>
+            </div>
+        </div>
+
+        <div class="品牌堅持">
+            <strong>關於我們的能量堅持：</strong><br>
+            • <b>純淨度 (Clarity)：</b>我們深知能量傳導的重要性，僅挑選高淨度礦石以確保頻率無雜訊。<br>
+            • <b>稀有性 (Rarity)：</b>頂級原礦如極光23或紅超七，是大自然億萬年的精華，與您的尊貴能量相稱。<br>
+            • <b>頻率契合度：</b>完整的晶體結構能產生穩定的壓電效應，為您提供更持久的調頻支持。
+        </div>
+    </div>
+</div>
+
+<script>
+    // 核心演算法：處理靈數加法
+    function 特殊加法(a, b) {
+        if (a === 0 && b === 0) return 9;
+        let 總和 = a + b;
+        while (總和 > 9) 總和 = 總和.toString().split('').map(Number).reduce((s, v) => s + v, 0);
+        return 總和;
+    }
+
+    function 開啟導引() {
+        const 輸入值 = document.getElementById('生日輸入').value;
+        // 防呆機制：檢查是否為 8 位數字
+        if (!/^\d{8}$/.test(輸入值)) { 
+            alert("請輸入正確的 8 位數字生日 (例如：20000807)"); 
+            return; 
+        }
+
+        // 轉換為 DDMMYYYY 順序進行底層計算
+        const 排序 = 輸入值.substring(6, 8) + 輸入值.substring(4, 6) + 輸入值.substring(0, 4);
+        const 底層 = 排序.split('').map(Number);
+
+        // 計算第二層 (4格)
+        const 二層 = [];
+        for (let i = 0; i < 8; i += 2) 二層.push(特殊加法(底層[i], 底層[i+1]));
+
+        // 計算第三層 (2格)
+        const 三層 = [];
+        for (let i = 0; i < 4; i += 2) 三層.push(特殊加法(二層[i], 二層[i+1]));
+
+        // 計算巔峰 (1格)
+        const 巔峰 = 特殊加法(三層[0], 三層[1]);
+
+        // 將數據填入畫面 (只填入二層、三層與巔峰)
+        document.getElementById('二層-1').innerText = 二層[0];
+        document.getElementById('二層-2').innerText = 二層[1];
+        document.getElementById('二層-3').innerText = 二層[2];
+        document.getElementById('二層-4').innerText = 二層[3];
+        document.getElementById('三層-左').innerText = 三層[0];
+        document.getElementById('三層-右').innerText = 三層[1];
+        document.getElementById('巔峰數').innerText = 巔峰;
+
+        // 水晶與解析庫
+        const 能量庫 = {
+            1: { 水晶: "紅超七 / 金草莓晶", 語錄: "您天生具備引領者的光芒，但請記得：最強大的力量往往來自於內心的溫柔。當您學會與世界和解，您的成功將無人能及。" },
+            2: { 水晶: "海藍寶 / 馬島月光石", 語錄: "您擁有一顆如水般細膩的心，這是世界珍貴的禮物。請信任您的直覺，不必為了取悅他人而妥協，平靜就是您的力量。" },
+            3: { 水晶: "高端鈦晶 / 金太陽石", 語錄: "您的靈魂充滿了創造與歡笑，請盡情釋放您的生命力。您的光彩將會照亮身邊的人，並自然吸引財富顯化。" },
+            4: { 水晶: "頂級綠幽靈 / 綠髮晶", 語錄: "穩定與責任是您的基石。在奔跑的路上，請偶爾停下腳步感受呼吸，當您內在豐盛，外在的財富將會源源不絕地流向您。" },
+            5: { 水晶: "葡萄石", 語錄: "自由是您的本質，變革是您的舞台。在流動的能量中，這款礦石將守護您的心念，讓您在每一次挑戰中都能看見機會。" },
+            6: { 水晶: "星光粉晶 / 綠兔毛", 語錄: "您習慣成為他人的依靠，但現在請把這份愛留一點給自己。當您的心輪盈滿，您的存在本身就是一種療癒。" },
+            7: { 水晶: "紫超七 / 拉長石 / 紫水晶", 語錄: "智慧與真理是您一生的追求。不必急著尋找答案，當您學會靜心，宇宙的奧秘自然會在您的直覺中緩緩開啟。" },
+            8: { 水晶: "金運石 / 黑髮晶 / 黑銀鈦", 語錄: "您具備掌握物質與顯化目標的權威，這是靈魂賦予您的工具。帶著愛去運用您的影響力，您將創造出永恆的價值。" },
+            9: { 水晶: "全頻超七 / 極光 23", 語錄: "您是靈魂的修行者，帶著圓滿的智慧而來。在利他的過程中，您將體會到最深沉的快樂。您的生命就是一個奇蹟。" }
+        };
+
+        const 結果 = 能量庫[巔峰] || 能量庫[1];
+        document.getElementById('水晶名稱').innerText = 結果.水晶;
+        document.getElementById('療癒建議文').innerText = 結果.語錄;
+
+        // 顯示結果區塊
+        document.getElementById('能量圖界面').style.display = 'flex';
+        document.getElementById('結果結果區').style.display = 'block';
+    }
+</script>
+</body>
+</html>
